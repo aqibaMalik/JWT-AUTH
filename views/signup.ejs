@@ -1,0 +1,130 @@
+<form class="p-4" id="signup-form" method="POST" action="/signup">
+  <h1 class="h3 text-white mb-3 fw-normal">Please sign Up</h1>
+
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="name@example.com"
+      name="username"
+    required
+    />
+    <label for="floatingInput">Email Username</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      name="password"
+    required
+    />
+    <label for="password">Password</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input
+      type="password"
+      class="form-control"
+      id="confirmPassword"
+      placeholder="Confirm Password"
+      name="confirmPassword"
+    required
+    />
+    <label for="confirmPassword">Confirm Password</label>
+  </div>
+  </div>
+  <button class="btn btn-primary w-100 py-2" type="submit">Sign Up</button>
+</form>
+<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+<script>
+  const validation = new JustValidate('#signup-form', {
+    errorFieldCssClass: 'is-invalid',
+    successFieldCssClass: 'is-valid',
+  })
+  validation
+    .addField('#floatingInput', [
+      {
+        rule: 'required',
+        errorMessage: 'Username is required',
+      },
+      {
+        rule: 'minLength',
+        value: 6,
+        errorMessage: 'Username must be at least 6 characters long',
+      },
+      {
+        validator:  (value) => async() => {
+          const res = await fetch("/userExists", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username: value }),
+          });
+          const data = await res.json();
+          console.log("user exists", data);
+          return !data.exists;
+        },
+        errorMessage: "Username already taken",
+      },
+    ])
+    .addField('#password', [
+      {rule: 'required', errorMessage: 'Password is required'},
+      {
+        rule: 'minLength',
+        value: 8,
+        errorMessage: 'Password must be at least 8 characters long',
+      },
+      {
+        rule: 'maxLength',
+        value: 20,
+        errorMessage: 'Password must not exceed 20 characters',
+      },
+      {
+        rule: 'strongPassword',
+        errorMessage: 'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character',
+      },
+      {
+        rule: 'strongPassword',
+        errorMessage: 'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character',
+      },
+    ])
+    .addField('#confirmPassword', [
+      {
+        rule: 'required',
+        errorMessage: 'Confirm Password is required',
+      },
+      {
+        validator: (value) => value === document.querySelector("#password").value,
+        errorMessage: 'Passwords do not match',
+      },
+    ])
+  validation.onSuccess((e) => {
+    
+    e.preventDefault()
+    const formData = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+    }
+
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("User created")
+        } else {
+          alert("Error creating user")
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error)
+      })
+  })
+</script>

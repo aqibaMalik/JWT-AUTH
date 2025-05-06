@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="font-monospace">
+      <header class="p-3 bg-dark text-white">
+        <div class="container d-flex align-items-center justify-content-between">
+          <div><a href="/" class="text-white fs-3  text-decoration-none">Home</a></div>
+            <div class="text-end">
+              <a href="/login" class="btn btn-outline-light me-2">
+                Login
+              </a>
+              <a href="/signup" class="btn btn-warning">Sign-up</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="text-white"  style="background-color: rgb(49, 43, 43); flex: 1 1 0; height: 535px;">
+        <%- body%>
+      </main>
+      <div class="container position-absolute bottom-0 border-top text-white" style="min-width: 100%;">
+        <footer class="d-flex flex-wrap  align-items-center my-2 ">
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 text-white mb-md-0">Aqib Malik &copy; Copyrights</span>
+          </div>
+      
+        
+        </footer>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -6,11 +6,10 @@ Welcome to **JWT Auth App**, a Node.js-based backend authentication project that
 
 ## 📸 Project Screenshots
 
-A Bento-style grid of screenshots to showcase the app’s functionality:
 
-| ![](Screenshots/Screenshot(1).png) | ![](Screenshots/Screenshot(2).png) |
+| ![](Screenshots/Screenshot%20(1).png) | ![](Screenshots/Screenshot%20(2).png) |
 | -------------------------------- | -------------------------------- |
-| ![](Screenshots/Screenshot(3).png) | ![](Screenshots/Screenshot(4).png) |
+| ![](Screenshots/Screenshot%20(3).png) | ![](Screenshots/Screenshot%20(4).png) |
 
 ---
 

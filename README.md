@@ -43,5 +43,5 @@ Follow these steps to set up and run the project locally:
 
    **NOW EXPLORE**
 
-👨‍💻 Author
+👨‍💻 
 Built with ❤️ by Aqib Malik
